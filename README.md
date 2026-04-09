@@ -55,8 +55,8 @@ brute-force-blocker/
 
 **1. Clone the repo**
 ```bash
-git clone https://github.com/yourusername/brute-force-blocker.git
-cd brute-force-blocker
+git clone https://github.com/NandhuRamesh143/Bruteforce-Blocker.git
+cd Bruteforce-Blocker
 ```
 
 **2. Run the setup script (installs everything)**
@@ -80,8 +80,8 @@ This will automatically install Python, pip, iptables (if missing) and set up a 
 ## ▶️ Running
 
 ```bash
-chmod +x start.sh
-bash start.sh
+chmod +x run.sh
+bash run.sh
 ```
 
 This starts both `siem.py` and `capture.py` together. Press `Ctrl+C` to stop both cleanly.
