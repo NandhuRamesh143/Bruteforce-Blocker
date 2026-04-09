@@ -89,25 +89,25 @@ This starts both `siem.py` and `capture.py` together. Press `Ctrl+C` to stop bot
 ---
 
 ## 🔍 What You'll See
-
-**capture.py output:**
-```
+When you run bash run.sh everything appears in one terminal:
+```bash
+[*] Enter sudo password once:
+[*] Starting SIEM...
+ * Serving Flask app 'siem'
+ * Debug mode: off
+[*] Starting Capture...
+[*] Both running. SIEM PID: 1234 | Capture PID: 5678
+[*] Press Ctrl+C to stop both.
 [STARTING MONITOR]
 [ATTEMPT] 192.168.1.45 → 1 failed attempts
 [ATTEMPT] 192.168.1.45 → 2 failed attempts
-...
+[ATTEMPT] 192.168.1.45 → 3 failed attempts
 [ALERT] {'type': 'brute_force', 'ip': '192.168.1.45', 'attempts': 7, 'severity': 'high', 'time': '2026-04-09 00:05:35'}
+SIEM RECEIVED: {'type': 'brute_force', 'ip': '192.168.1.45', 'attempts': 7, 'severity': 'high', 'time': '2026-04-09 00:05:35'}
 [BLOCKING] 192.168.1.45
 [BLOCKED] 192.168.1.45 added to iptables
 [UNBLOCKED] 192.168.1.45 after 300s
 ```
-
-**siem.py output:**
-```
-* Serving Flask app 'siem'
-SIEM RECEIVED: {'type': 'brute_force', 'ip': '192.168.1.45', 'attempts': 7, 'severity': 'high', 'time': '2026-04-09 00:05:35'}
-```
-
 Alerts are also saved to `siem_alerts.log`. Watch them live with:
 ```bash
 tail -f siem_alerts.log
