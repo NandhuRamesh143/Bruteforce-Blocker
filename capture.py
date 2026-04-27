@@ -5,6 +5,7 @@ from collections import defaultdict
 import os
 import requests
 import threading
+import socket
 
 SIEM_ENDPOINT = "http://[::1]:5000/alert"
 LOG_FILE = "collected_logs.txt"
@@ -15,6 +16,18 @@ blocked_ips = set()
 
 pattern = re.compile(r"Failed password.*from ([\da-fA-F\.:]+)")
 
+def notify_attacker(ip):
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(2)
+        s.connect((ip, 22))
+        message = b"Your IP has been detected for brute force activity and will be banned.\r\n"
+        s.send(message)
+        s.close()
+        print(f"[NOTIFIED] Sent ban message to {ip}")
+    except Exception as e:
+        print(f"[NOTIFY ERROR] Could not reach {ip}: {e}")
+        
 def unblock_ip(ip, delay=300):  # 300s = 5 minutes
     def _unblock():
         time.sleep(delay)
