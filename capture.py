@@ -74,7 +74,7 @@ def block_ip(ip):
     try:
         notify_attacker(ip)
         subprocess.run(
-            ["sudo", "iptables", "-A", "INPUT", "-s", ip, "-j", "DROP"],
+            ["sudo", "iptables", "-A", "INPUT", "-s", ip, "-j", "REJECT"],
             check=True
         )
         blocked_ips.add(ip)
