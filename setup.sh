@@ -233,5 +233,5 @@ deactivate
 echo ""
 echo "============================================"
 echo "   Setup complete!"
-echo "   Run the project with: bash start.sh"
+echo "   Run the project with: bash run.sh"
 echo "============================================"
